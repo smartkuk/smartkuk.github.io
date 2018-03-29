@@ -1,7 +1,7 @@
 /**
  * 메인 화면 컨트롤러
  */
-app.controller('GeneratorCtrl', function($scope, $log, RandomDataService) {
+app.controller('GeneratorCtrl', function($scope, $log, RandomDataService, CommonService) {
 
 	/**
 	 * 화면에서 사용되는 변수
@@ -11,7 +11,9 @@ app.controller('GeneratorCtrl', function($scope, $log, RandomDataService) {
 				count: null,
 				wrapCharacter: null,
 				separator: null
-			}
+			},
+			generatedUuid: null,
+			resultRows: null
 	};
 	
 	$scope.createExamples = function () {
@@ -37,5 +39,27 @@ app.controller('GeneratorCtrl', function($scope, $log, RandomDataService) {
 		} else {
 			return wrapCharacter + 'Generated UUID' + wrapCharacter;
 		}
+	};
+	
+	$scope.generateUuid = function () {
+		
+		var wrapCharacter = $scope.views.generateUuid.wrapCharacter;
+		var separator = $scope.views.generateUuid.separator;
+		if(separator == null) {
+			separator = ',\n';
+		} else {
+			separator += '\n';
+		}
+		
+		var count = $scope.views.generateUuid.count;
+		var results = '';
+		
+		for(var i = 0; i < count; i++) {
+			var uuid = RandomDataService.uuid();
+			results = CommonService.seperating(results, CommonService.wrapping(uuid, wrapCharacter), separator);
+		}
+		
+		$scope.views.resultRows = count + 1;
+		$scope.views.generatedUuid = results;
 	};
 });
