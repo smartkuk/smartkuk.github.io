@@ -3,9 +3,8 @@
  */
 app.config(function($routeProvider, $locationProvider) {
 	
-	$routeProvider
-	
-	.when('/Book/:bookId', {
+	$routeProvider.when('/Book/:bookId', {
+		
 		templateUrl: 'book.html',
 		controller: 'BookController',
 		resolve: {
@@ -15,8 +14,8 @@ app.config(function($routeProvider, $locationProvider) {
 				return delay.promise;
 			}
 		}
-	})
-	.when('/Book/:bookId/ch/:chapterId', {
+	}).when('/Book/:bookId/ch/:chapterId', {
+		
 		templateUrl: 'chapter.html',
 		controller: 'ChapterController'
 	});
