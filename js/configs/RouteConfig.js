@@ -7,8 +7,5 @@ app.config(function($routeProvider, $locationProvider) {
 		templateUrl: 'views/routeTest.html'
 	});
 	
-	$locationProvider.html5Mode({
-		enabled: true,
-		requireBase: false
-	});
+	$locationProvider.html5Mode(true);
 });
