@@ -1,0 +1,27 @@
+<div class="container-fluid" >
+	<h4>UUID 생성</h4>
+	<br>
+	<form>
+		<div class="form-row" >
+			<div class="form-group col-md-2" >
+				<label for="inputCity" >Count</label>
+				<input type="text" class="form-control" id="inputCity" ng-model="views.generateUuid.count" >
+			</div>
+			<div class="form-group col-md-5" ng-show="views.generateUuid.count != null && views.generateUuid.count > 1" >
+				<label for="inputState" >Separator</label>
+				<input type="text" class="form-control" id="inputCity" placeholder="default is ," ng-model="views.generateUuid.separator" ng-trim="false" >
+			</div>
+			<div class="form-group col-md-5" >
+				<label for="inputState" >Wrap</label>
+				<input type="text" class="form-control" id="inputCity" ng-model="views.generateUuid.wrapCharacter" >
+			</div>
+		</div>
+		<div ng-show="views.generateUuid.count > 0" >
+			<p>examples: <kbd>{{createExamples() }}</kbd></p>
+		</div>
+		</div>
+		<div class="form-row" >
+			<button type="submit" class="btn btn-primary" >Submit</button>
+		</div>
+  </form>
+</div>

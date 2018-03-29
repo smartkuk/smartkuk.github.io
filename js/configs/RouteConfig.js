@@ -7,4 +7,8 @@ app.config(function($routeProvider, $locationProvider) {
 		templateUrl: 'views/routeTest.html'
 	});
 	
+	$routeProvider.when('/generators', {
+		templateUrl: 'views/generators/generators.html'
+	});
+	
 });
