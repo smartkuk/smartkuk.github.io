@@ -3,12 +3,16 @@
  */
 app.config(function($routeProvider, $locationProvider) {
 	
-	$routeProvider.when('/routeTest', {
-		templateUrl: 'views/routeTest.html'
+	$routeProvider.when('/', {
+		templateUrl: 'views/notice.html'
 	});
 	
-	$routeProvider.when('/generators', {
-		templateUrl: 'views/generators/generators.html'
+	$routeProvider.when('/generators/uuid', {
+		templateUrl: 'views/generators/uuid.html'
+	});
+	
+	$routeProvider.when('/converters/prettyjson', {
+		templateUrl: 'views/converters/convertPrettyJson.html'
 	});
 	
 });

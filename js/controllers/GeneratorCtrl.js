@@ -1,7 +1,7 @@
 /**
  * 메인 화면 컨트롤러
  */
-app.controller('GeneratorCtrl', function($scope, $log, RandomDataService, CommonService) {
+app.controller('GeneratorCtrl', function($scope, $log, $filter, RandomDataService, CommonService) {
 
 	/**
 	 * 화면에서 사용되는 변수
@@ -13,7 +13,10 @@ app.controller('GeneratorCtrl', function($scope, $log, RandomDataService, Common
 				separator: null
 			},
 			generatedUuid: null,
-			resultRows: null
+			resultRows: null,
+			//----------------------
+			dirtyJson: null,
+			prettyJson: null
 	};
 	
 	$scope.createExamples = function () {
@@ -30,9 +33,6 @@ app.controller('GeneratorCtrl', function($scope, $log, RandomDataService, Common
 		} else if(separator == null) {
 			separator = '';
 		}
-		
-		$log.debug('wrapCharacter:', wrapCharacter);
-		$log.debug('separator: [' + separator + ']');
 		
 		if($scope.views.generateUuid.count > 1) {
 			return wrapCharacter + 'Generated UUID 1' + wrapCharacter + separator + wrapCharacter + 'Generated UUID 2' + wrapCharacter + ' ...';
@@ -59,7 +59,11 @@ app.controller('GeneratorCtrl', function($scope, $log, RandomDataService, Common
 			results = CommonService.seperating(results, CommonService.wrapping(uuid, wrapCharacter), separator);
 		}
 		
-		$scope.views.resultRows = count + 1;
+		$scope.views.resultRows = count;
 		$scope.views.generatedUuid = results;
+	};
+	
+	$scope.convertPretty = function () {
+		$scope.views.prettyJson = angular.fromJson($scope.views.dirtyJson);
 	};
 });

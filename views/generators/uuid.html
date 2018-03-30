@@ -1,32 +1,38 @@
-<div class="container-fluid" >
-	<h4>UUID 생성</h4>
+<div class="container-fluid" ng-controller="GeneratorCtrl" >
+	<h4>랜덤 UUID 생성</h4>
+	<p>랜덤 UUID를 생성하는 툴입니다. 자바스크립트를 사용한 로직으로 중복이 발생할 수 있습니다. 단순한 테스트를 위해 사용하실 때 이용하시기 바랍니다.</p>
 	<br>
-	<form>
+	<form name="uuidForm" >
 		<div class="form-row" >
 			<div class="form-group col-md-2" >
-				<label for="inputCity" >Count</label>
-				<input type="number" class="form-control" id="inputCity" ng-model="views.generateUuid.count" >
+				<label uib-tooltip="생성할 개수입니다. 1000개까지 가능합니다." >생성개수</label>
+				<input type="number" class="form-control" name="uuidCount" required ng-model="views.generateUuid.count" ng-max="1000" >
 			</div>
 			<div class="form-group col-md-5" ng-show="views.generateUuid.count != null && views.generateUuid.count > 1" >
-				<label for="inputState" >Separator</label>
-				<input type="text" class="form-control" id="inputCity" placeholder="default is ," ng-model="views.generateUuid.separator" ng-trim="false" >
+				<label>구분자</label>
+				<input type="text" class="form-control" placeholder="구분자 기본값은 , 입니다." ng-model="views.generateUuid.separator" ng-trim="false" >
 			</div>
 			<div class="form-group col-md-5" >
-				<label for="inputState" >Wrap</label>
-				<input type="text" class="form-control" id="inputCity" ng-model="views.generateUuid.wrapCharacter" >
+				<label>감쌀 문자</label>
+				<input type="text" class="form-control" ng-model="views.generateUuid.wrapCharacter" >
 			</div>
 		</div>
-		<div class="form-group" ng-show="views.generateUuid.count > 0" >
-			<small id="emailHelp" class="form-text text-muted" >example of generating: <kbd>{{createExamples() }}</kbd></small>
+		<div class="form-group" ng-show="views.generateUuid.count > 0 && !uuidForm.uuidCount.$error.required" >
+			<small class="form-text text-muted" >예시: <kbd>{{createExamples() }}</kbd></small>
 		</div>
-		<button type="submit" class="btn btn-primary btn-block" ng-click="generateUuid()" >Submit</button>
+		<div class="form-group" ng-show="uuidForm.uuidCount.$error.max" >
+			<small class="form-text text-danger" >생성 가능한 개수는 한 번에 1,000개 까지입니다.</small>
+		</div>
+		<button type="submit" class="btn btn-primary btn-block" ng-click="generateUuid()" ng-disabled="!uuidForm.$valid" >생성</button>
 	</form>
 	<br>
 	<form ng-show="views.generatedUuid != null && views.generatedUuid.length > 0" >
 		<div class="form-group" >
-			<label>Result</label>
+			<label>생성결과</label>
 			<textarea class="form-control" rows="{{views.resultRows }}" readonly
 					select ng-model="views.generatedUuid" ></textarea>
 		</div>
 	</form>
+	<!-- <pre>{{uuidForm }}</pre> -->
+	<!-- <pre>{{uuidForm.uuidCount.$error | prettyJson }}</pre> -->
 </div>

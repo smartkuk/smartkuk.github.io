@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="SmartFactoryApp" >
+
     <head>
+    		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116490783-2"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'UA-116490783-2');
+		</script>
 	    <meta charset="utf-8" >
 	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" >
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -10,38 +19,64 @@
     </head>
 
     <body>
-
-		<div ng-include="'/views/top.html'" ></div>
-		<br>
+    		<div ng-include="'/views/top.html'" ></div>
     		<div class="container-fluid" >
-			<div class="row" >
-	            <div class="col-xl-1" ></div>
-	            <div class="col-xl-10" >
-					<div ng-view ></div>
+	   		<div class="row" >
+	            	<nav class="col-xl-2 d-none d-md-block bg-light sidebar" >
+					<div class="sidebar-sticky" >
+						<ul class="nav flex-column" >
+							<li class="nav-item" >
+								<a class="nav-link text-dark active" href="#!generators/uuid" >랜덤 UUID 생성<span class="sr-only" >(current)</span></a>
+							</li>
+							<li class="nav-item" >
+								<a class="nav-link text-dark" href="#!converters/prettyjson" >Json 문자열 변환<span class="sr-only" >(current)</span></a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+	            <div class="col-xl-8" >
+	            		<br>
+					<div ng-view >
+					init
+					</div>
 	            </div>
-	            <div class="col-xl-1" ></div>
+	            <div class="col-xl-2" ></div>
 	        </div>
     		</div>
+    		
+    		<!-- script start -->
+    		
+	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js" ></script>
+	    
+	    <!-- use bootstrap4 -->
+	    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	    			integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous" ></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+				integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+				crossorigin="anonymous" ></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+				integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+				crossorigin="anonymous" ></script>
+	    <!-- use bootstrap4 -->
+	    
+	    <!-- use angular-route -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js" ></script>
+	    <!-- use angular-route -->
+		
+		<!-- use angular ui.bootstrap -->
+		<script type="text/javascript" src="js/configs/ui-bootstrap-tpls-3.0.3.js" ></script>
+		<!-- use angular ui.bootstrap -->
+		
+		<script type="text/javascript" src="js/SmartFactoryApp.js" ></script>
+		<script type="text/javascript" src="js/controllers/GeneratorCtrl.js" ></script>
+		<script type="text/javascript" src="js/services/CalculateService.js" ></script>
+		<script type="text/javascript" src="js/services/RandomDataService.js" ></script>
+		<script type="text/javascript" src="js/services/CommonService.js" ></script>
+		<script type="text/javascript" src="js/configs/RouteConfig.js" ></script>
+		<script type="text/javascript" src="js/directives/select.js" ></script>
+		<script type="text/javascript" src="js/filters/prettyJsonFilter.js" ></script>
+		
+		<!-- script end -->
+    		
     </body>
-    
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js" ></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    			integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-			integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-			crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-			integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-			crossorigin="anonymous"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js" ></script>
-	
-	<script type="text/javascript" src="js/SmartFactoryApp.js" ></script>
-	<script type="text/javascript" src="js/controllers/GeneratorCtrl.js" ></script>
-	<script type="text/javascript" src="js/services/CalculateService.js" ></script>
-	<script type="text/javascript" src="js/services/RandomDataService.js" ></script>
-	<script type="text/javascript" src="js/services/CommonService.js" ></script>
-	<script type="text/javascript" src="js/configs/RouteConfig.js" ></script>
-	<script type="text/javascript" src="js/directives/select.js" ></script>
-	
 </html>
